@@ -23,8 +23,8 @@ import {
 export class ControlComponent {
   @HostBinding('class') className = 'control';
   @HostListener('click') onClick() {
-    console.log('Clicked!');
-    console.log(this.el);
+    // console.log('Clicked!');
+    // console.log(this.el);
   }
   
   @Input({ required: true }) label!: string;
