@@ -1,11 +1,13 @@
 import {
   Component,
+  ContentChild,
   ElementRef,
   HostBinding,
   HostListener,
   Input,
   ViewEncapsulation,
   inject,
+  input,
 } from '@angular/core';
 
 @Component({
@@ -15,22 +17,28 @@ import {
   templateUrl: './control.component.html',
   styleUrl: './control.component.css',
   encapsulation: ViewEncapsulation.None,
-  // host: {
-  //   class: 'control',
-  //   '(click)': 'onClick()',
-  // },
+  host: {
+    class: 'control',
+    '(click)': 'onClick()',
+  },
 })
 export class ControlComponent {
-  @HostBinding('class') className = 'control';
-  @HostListener('click') onClick() {
-    // console.log('Clicked!');
-    // console.log(this.el);
-  }
-  
-  @Input({ required: true }) label!: string;
-  private el = inject(ElementRef);
-
-  // onClick() {
+  // @HostBinding('class') className = 'control';
+  // @HostListener('click') onClick() {
   //   console.log('Clicked!');
+  //   console.log(this.el);
   // }
+
+  // @Input({ required: true }) label!: string;
+  label = input.required<string>();
+  private el = inject(ElementRef);
+  @ContentChild('input') private control?: ElementRef<
+    HTMLInputElement | HTMLTextAreaElement
+  >;
+
+  onClick() {
+    console.log('Clicked!');
+    console.log(this.el);
+    console.log(this.control);
+  }
 }
