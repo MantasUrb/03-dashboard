@@ -18,7 +18,7 @@ export class ServerStatusComponent implements OnInit {
   private destroyRef = inject(DestroyRef);
 
   ngOnInit() {
-    console.log('ON INIT');
+    // console.log('ON INIT');
 
     const interval = setInterval(() => {
       const rnd = Math.random(); // 0 - 0.9999999999
@@ -32,12 +32,11 @@ export class ServerStatusComponent implements OnInit {
       }
     }, 5000);
 
-    this.destroyRef.onDestroy(() => 
-      clearInterval(interval));
+    this.destroyRef.onDestroy(() => clearInterval(interval));
   }
 
   ngAfterViewInit() {
-    console.log('AFTER VIEW INIT');
+    // console.log('AFTER VIEW INIT');
   }
 
   // ngOnDestroy() {

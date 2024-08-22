@@ -7,6 +7,8 @@ import {
   HostListener,
   Input,
   ViewEncapsulation,
+  afterNextRender,
+  afterRender,
   inject,
   input,
 } from '@angular/core';
@@ -37,7 +39,17 @@ export class ControlComponent implements AfterContentInit {
     HTMLInputElement | HTMLTextAreaElement
   >;
 
-  ngAfterContentInit(){
+  constructor() {
+    afterRender(() => {
+      // console.log('afterRender');
+    });
+
+    afterNextRender(() => {
+      // console.log('afterNextRender');
+    });
+  }
+
+  ngAfterContentInit() {
     // ...
   }
 
