@@ -10,7 +10,10 @@ import { Ticket } from './ticket.model';
 })
 export class TicketComponent {
   @Input({ required: true }) data?: Ticket;
-  @Output() close = new EventEmitter<{ title: string; text: string }>();
+  @Output() close = new EventEmitter<{
+    title: string;
+    text: string;
+  }>();
   detailsVisible = false;
 
   onToggleDetails() {

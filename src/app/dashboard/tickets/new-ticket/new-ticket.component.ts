@@ -13,13 +13,15 @@ import { ControlComponent } from '../../../shared/control/control.component';
 @Component({
   selector: 'app-new-ticket',
   standalone: true,
-  imports: [ButtonComponent, ControlComponent, FormsModule],
   templateUrl: './new-ticket.component.html',
   styleUrl: './new-ticket.component.css',
+  imports: [ButtonComponent, ControlComponent, FormsModule],
 })
 export class NewTicketComponent implements AfterViewInit {
   @ViewChild('form') form?: ElementRef<HTMLFormElement>;
   @Output() add = new EventEmitter<{ title: string; text: string }>();
+  enteredTitle = '';
+  enteredText = '';
 
   ngOnInit() {
     // console.log("ONINIT");
@@ -31,10 +33,12 @@ export class NewTicketComponent implements AfterViewInit {
     // console.log(this.form?.nativeElement);
   }
 
-  onSubmit(title: string, ticketText: string) {
+  onSubmit() {
     // console.log(title);
     // console.log(ticketText);
-    this.add.emit({ title: title, text: ticketText });
-    this.form?.nativeElement.reset();
+    // this.form?.nativeElement.reset();
+    this.add.emit({ title: this.enteredTitle, text: this.enteredText });
+    this.enteredText = '';
+    this.enteredTitle = '';
   }
 }
